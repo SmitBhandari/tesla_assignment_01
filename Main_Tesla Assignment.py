@@ -92,30 +92,28 @@ if os.path.exists(file_path):
         # Display scorecards on the left side
         col1, col2 = st.columns([1, 3])
         with col1:
-            with st.container(border=True):   
-                st.markdown("### Performance Metrics")
-                st.metric(label="Mean Absolute Deviation (MAD)", value=f"{mad:.2f}")
-                st.metric(label="Root Mean Squared Error (RMSE)", value=f"{rmse:.2f}")
-                st.metric(label="Mean Squared Error (MSE)", value=f"{mse:.2f}")
-                st.metric(label="Weighted Mean Absolute Percentage Error (WMAPE)", value=f"{wmape:.2f}%")
-                st.metric(label="Mean Bias Error (MBE)", value=f"{mbe:.2f}")
+            st.markdown("### Performance Metrics")
+            st.metric(label="Mean Absolute Deviation (MAD)", value=f"{mad:.2f}")
+            st.metric(label="Root Mean Squared Error (RMSE)", value=f"{rmse:.2f}")
+            st.metric(label="Mean Squared Error (MSE)", value=f"{mse:.2f}")
+            st.metric(label="Weighted Mean Absolute Percentage Error (WMAPE)", value=f"{wmape:.2f}%")
+            st.metric(label="Mean Bias Error (MBE)", value=f"{mbe:.2f}")
 
         # Display the chart on the right side
         with col2:
-            with st.container(border=True):
-                fig = go.Figure()
-                fig.add_trace(go.Scatter(x=train.index, y=train["Weekly_Sales"], mode="lines", name="Train" ))
-                fig.add_trace(go.Scatter(x=test.index, y=test["Weekly_Sales"], mode="lines", name="Test", line=dict(color="orange")))
-                fig.add_trace(go.Scatter(x=test.index, y=forecast, mode="lines", name="Forecast", line=dict(color="red", dash="dash")))
-                fig.update_layout(
-                    title=f"{selected_model} Forecast for SKU {selected_sku} ({selected_lag})",
-                    xaxis_title="Date",
-                    yaxis_title="Weekly Sales",
-                    template="plotly_dark",
-                    width = 800,  # Set the figure width
-                    height = 527  # Set the figure height
-                )    
-                st.plotly_chart(fig, use_container_width=True)
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=train.index, y=train["Weekly_Sales"], mode="lines", name="Train" ))
+            fig.add_trace(go.Scatter(x=test.index, y=test["Weekly_Sales"], mode="lines", name="Test", line=dict(color="orange")))
+            fig.add_trace(go.Scatter(x=test.index, y=forecast, mode="lines", name="Forecast", line=dict(color="red", dash="dash")))
+            fig.update_layout(
+                title=f"{selected_model} Forecast for SKU {selected_sku} ({selected_lag})",
+                xaxis_title="Date",
+                yaxis_title="Weekly Sales",
+                template="plotly_dark",
+                width = 800,  # Set the figure width
+                height = 527  # Set the figure height
+            )    
+            st.plotly_chart(fig, use_container_width=True)
 
     elif page == "Comparative Analysis":
         # Redirect to the Comparative Analysis page
