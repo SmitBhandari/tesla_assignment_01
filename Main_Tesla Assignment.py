@@ -10,9 +10,9 @@ from sklearn.linear_model import LinearRegression
 # Set page configuration
 st.set_page_config(page_title="Forecasting Dashboard", layout="wide", initial_sidebar_state="expanded")
 
-logo_icon = "Tesla Logo.png"
-logo_image = "Tesla Logo_name.png"
-st.logo(icon_image=logo_icon, image=logo_image)
+# logo_icon = "Tesla Logo.png"
+# logo_image = "Tesla Logo_name.png"
+# st.logo(icon_image=logo_icon, image=logo_image)
 
 # Sidebar navigation
 page = st.sidebar.selectbox("Select Page", ["Forecasting Dashboard", "Comparative Analysis", "Model Validation"])
